@@ -1,5 +1,3 @@
-package QUIZ;
-
 public class cafe15 {
     public String namaCafe;
     public String lokasi;
