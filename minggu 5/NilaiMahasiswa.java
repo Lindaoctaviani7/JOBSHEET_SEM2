@@ -1,72 +1,49 @@
 public class NilaiMahasiswa {
-    
-    public static int MaxDC(int[] arr, int left, int right) {
-        if (left == right) {
-            return arr[left];
-        }
-        int mid = (left + right) / 2;
-        int maxKiri = MaxDC(arr, left, mid);
-        int maxKanan = MaxDC(arr, mid + 1, right);
-        return Math.max(maxKiri, maxKanan);
-    }
+    String nama;
+    int uts;
+    int uas;
 
-    public static int MinDC(int[] arr, int left, int right) {
-        if (left == right) {
-            return arr[left];
-        }
-        int mid = (left + right) / 2;
-        int minKiri = MinDC(arr, left, mid);
-        int minKanan = MinDC(arr, mid + 1, right);
-        return Math.min(minKiri, minKanan);
-    }
-
-    public static double hitungRataBF(int[] arr) {
-        int total = 0;
-        for (int nilai : arr) {
-            total += nilai;
-        }
-        return (double) total / arr.length;
+    public NilaiMahasiswa(String nama, int uts, int uas) {
+        this.nama = nama;
+        this.uts = uts;
+        this.uas = uas;
     }
 }
 
-/*public class NilaiMahasiswa {
-    
-    public static int cariMaxDC(int[] arr, int left, int right) {
-        if (left == right) {
-            return arr[left];
-        }
-        int mid = (left + right) / 2;
-        int maxKiri = cariMaxDC(arr, left, mid);
-        int maxKanan = cariMaxDC(arr, mid + 1, right);
-        return Math.max(maxKiri, maxKanan);
+class AnalisaNilai {
+    public static int MaxUTS(int[] uts, int l, int r) {
+        if (l == r) return uts[l];
+        
+        int mid = (l + r) / 2;
+        int leftMax = MaxUTS(uts, l, mid);
+        int rightMax = MaxUTS(uts, mid + 1, r);
+        
+        if (leftMax > rightMax) {
+            return leftMax;
+        } else {
+            return rightMax;
+        }        
     }
 
-    public static int cariMinDC(int[] arr, int left, int right) {
-        if (left == right) {
-            return arr[left];
-        }
-        int mid = (left + right) / 2;
-        int minKiri = cariMinDC(arr, left, mid);
-        int minKanan = cariMinDC(arr, mid + 1, right);
-        return Math.min(minKiri, minKanan);
+    public static int MinUTS(int[] uts, int l, int r) {
+        if (l == r) return uts[l];
+        
+        int mid = (l + r) / 2;
+        int leftMin = MinUTS(uts, l, mid);
+        int rightMin = MinUTS(uts, mid + 1, r);
+        
+        if (rightMin > leftMin) {
+            return leftMin;
+        } else {
+            return rightMin;
+        } 
     }
 
-    public static double hitungRataBruteForce(int[] arr) {
+    public static double hitungRataUAS(int[] uas) {
         int total = 0;
-        for (int nilai : arr) {
-            total += nilai;
+        for (int nilai : uas) {
+            total += nilai; 
         }
-        return (double) total / arr.length;
+        return (double) total / uas.length;
     }
-
-    public static int[] inputNilai(int jumlah, String jenis) {
-        Scanner sc15 = new Scanner(System.in);
-        int[] nilai = new int[jumlah];
-        System.out.println("Masukkan " + jenis + " untuk " + jumlah + " mahasiswa:");
-        for (int i = 0; i < jumlah; i++) {
-            System.out.print("Mahasiswa " + (i + 1) + ": ");
-            nilai[i] = sc15.nextInt();
-        }
-        return nilai;
-    }
-}*/
+}

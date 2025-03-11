@@ -1,40 +1,32 @@
 public class MainNilaiMahasiswa {
     public static void main(String[] args) {
-        int[] nilaiUTS = {78, 85, 90, 76, 92, 88, 80, 82};
-        int[] nilaiUAS = {82, 88, 87, 79, 95, 85, 83, 84};
+        NilaiMahasiswa[] arrayOfNilaiMahasiswa = {
+            new NilaiMahasiswa("Ahmad", 78, 82),
+            new NilaiMahasiswa("Budi", 85, 88),
+            new NilaiMahasiswa("Cindy", 90, 87),
+            new NilaiMahasiswa("Dian", 76, 79),
+            new NilaiMahasiswa("Eko", 92, 95),
+            new NilaiMahasiswa("Fajar", 88, 85),
+            new NilaiMahasiswa("Gina", 80, 83),
+            new NilaiMahasiswa("Hadi", 82, 84)
+        };
 
-        int maxUTS = NilaiMahasiswa.MaxDC(nilaiUTS, 0, nilaiUTS.length - 1);
-        System.out.println("Nilai UTS tertinggi: " + maxUTS);
+        int jumlah = arrayOfNilaiMahasiswa.length;
+        int[] uts = new int[jumlah];
+        int[] uas = new int[jumlah];
 
-        int minUTS = NilaiMahasiswa.MinDC(nilaiUTS, 0, nilaiUTS.length - 1);
-        System.out.println("Nilai UTS terendah: " + minUTS);
+        for (int i = 0; i < jumlah; i++) {
+            uts[i] = arrayOfNilaiMahasiswa[i].uts;
+            uas[i] = arrayOfNilaiMahasiswa[i].uas;
+        }
 
-        double rataUAS = NilaiMahasiswa.hitungRataBF(nilaiUAS);
-        System.out.println("Rata-rata nilai UAS: " + rataUAS);
+        int nilaiMaxUTS = AnalisaNilai.MaxUTS(uts, 0, jumlah - 1);
+        int nilaiMinUTS = AnalisaNilai.MinUTS(uts, 0, jumlah - 1);
+
+        double rataRataUAS = AnalisaNilai.hitungRataUAS(uas);
+
+        System.out.println("Nilai UTS Tertinggi : " + nilaiMaxUTS);
+        System.out.println("Nilai UTS Terendah  : " + nilaiMinUTS);
+        System.out.println("Rata-rata Nilai UAS : " + rataRataUAS);
     }
 }
-
-/*import java.util.Scanner;
-
-public class MainNilaiMahasiswa {
-    public static void main(String[] args) {
-        Scanner sc15 = new Scanner(System.in);
-        System.out.print("Masukkan jumlah mahasiswa: ");
-        int jmlMhs = sc15.nextInt();
-
-        int[] nilaiUTS = NilaiMahasiswa.inputNilai(jmlMhs, "nilai UTS");
-        
-        int[] nilaiUAS = NilaiMahasiswa.inputNilai(jmlMhs, "nilai UAS");
-
-        int maxUTS = NilaiMahasiswa.cariMaxDC(nilaiUTS, 0, nilaiUTS.length - 1);
-        System.out.println("\nNilai UTS tertinggi: " + maxUTS);
-
-        int minUTS = NilaiMahasiswa.cariMinDC(nilaiUTS, 0, nilaiUTS.length - 1);
-        System.out.println("Nilai UTS terendah: " + minUTS);
-
-        double rataUAS = NilaiMahasiswa.hitungRataBruteForce(nilaiUAS);
-        System.out.println("Rata-rata nilai UAS: " + rataUAS);
-
-        sc15.close();
-    }
-}*/
