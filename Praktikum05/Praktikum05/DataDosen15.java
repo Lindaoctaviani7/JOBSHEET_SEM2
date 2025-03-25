@@ -1,8 +1,8 @@
-public class DataDosen {
-    Dosen[] dataDosen = new Dosen[50];
+public class DataDosen15 {
+    Dosen15[] dataDosen = new Dosen15[100];
     int idx = 0;
 
-    public void tambah(Dosen dsn) {
+    public void tambah(Dosen15 dsn) {
         if (idx < dataDosen.length) {
             dataDosen[idx] = dsn;
             idx++;
@@ -25,7 +25,7 @@ public class DataDosen {
         for (int i = 0; i < idx - 1; i++) {
             for (int j = 0; j < idx - i - 1; j++) {
                 if (dataDosen[j].usia > dataDosen[j + 1].usia) {
-                    Dosen temp = dataDosen[j];
+                    Dosen15 temp = dataDosen[j];
                     dataDosen[j] = dataDosen[j + 1];
                     dataDosen[j + 1] = temp;
                 }
@@ -41,7 +41,7 @@ public class DataDosen {
                     maxIdx = j;
                 }
             }
-            Dosen temp = dataDosen[i];
+            Dosen15 temp = dataDosen[i];
             dataDosen[i] = dataDosen[maxIdx];
             dataDosen[maxIdx] = temp;
         }
@@ -49,7 +49,7 @@ public class DataDosen {
 
     public void insertionSort() {
         for (int i = 1; i < idx; i++) {
-            Dosen temp = dataDosen[i];
+            Dosen15 temp = dataDosen[i];
             int j = i;
             while (j > 0 && dataDosen[j - 1].usia < temp.usia) {
                 dataDosen[j] = dataDosen[j - 1];
@@ -57,5 +57,30 @@ public class DataDosen {
             }
             dataDosen[j] = temp;
         }
+    }
+
+    public Dosen15 PencarianDataSequential(String nama) {
+        for (int i = 0; i < idx; i++) {
+            if (dataDosen[i].nama.equalsIgnoreCase(nama)) {
+                return dataDosen[i];
+                }
+            }
+        return null;
+    }
+
+    public Dosen15 PencarianDataBinary(int usia) {
+        SortingASC(); 
+        int left = 0, right = idx - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (dataDosen[mid].usia == usia) {
+                return dataDosen[mid];
+            } else if (dataDosen[mid].usia < usia) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return null;
     }
 }
